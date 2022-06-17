@@ -1,23 +1,10 @@
-import babel from "rollup-plugin-babel";
-// import { eslint} from 'rollup-plugin-eslint'
 import resolve from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
 import commonjs from "@rollup/plugin-commonjs";
-import terser from "rollup-plugin-terser";
-
+import { terser } from "rollup-plugin-terser";
 export default {
   input: "src/index.ts",
-  plugins: [
-    resolve(),
-    commonjs(),
-    typescript(),
-    terser(),
-    babel({
-      babelrc: false,
-      presets: [["@babel/preset-env", { modules: false }]],
-      exclude: "node_modules/**", // 只编译我们的源代码，忽略第三方代码
-    }),
-  ],
+  plugins: [resolve(), typescript(), commonjs(), terser()],
   output: [
     {
       dir: "dist",
@@ -33,6 +20,7 @@ export default {
       dir: "dist",
       format: "umd",
       entryFileNames: "[name].umd.js",
+      name: "bundleName",
     },
   ],
 };

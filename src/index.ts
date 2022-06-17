@@ -1,6 +1,3 @@
-const test = () => {
-  console.log(11);
-  console.log(22);
+export const aa = (aa: string) => {
+  console.log(`the answer is ${aa}`);
 };
-
-test();
